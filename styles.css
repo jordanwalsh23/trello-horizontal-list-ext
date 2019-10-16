@@ -1,24 +1,24 @@
-#board {
+#board.side-toggled {
     overflow-y: scroll !important;
 }
 
-.list-wrapper {
+.list-wrapper.side-toggled {
     display: block !important;
     width: 100% !important;
     height: auto !important;
     margin: 0 0 15px 4px !important;
 }
 
-.list {
+.list.side-toggled {
     display: block !important;
     overflow: scroll !important;
 }
 
-.list-cards {
+.list-cards.side-toggled {
     display: inline-flex !important;
 }
 
-.list-card {
+.list-card.side-toggled {
     width: 250px !important;
     margin-right: 10px !important;
 }
