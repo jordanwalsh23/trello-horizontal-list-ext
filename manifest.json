@@ -1,11 +1,12 @@
 {
     "manifest_version": 2,
     "name": "Trello Horizontal Lists",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Turns Trello Lists Horizontal so they can be used for vertical comparisons.",
     "author": "Jordan Walsh (info@heyshmu.com)",
     "content_scripts": [{
         "css": ["styles.css"],
+        "js": ["scripts.js"],
         "matches": ["https://trello.com/*"]
     }],
     "icons": {
