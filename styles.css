@@ -4,7 +4,7 @@
 
 .list-wrapper.side-toggled {
     display: block !important;
-    width: fit-content !important;
+    width: 100% !important;
     height: auto !important;
     margin: 0 0 15px 4px !important;
 }
@@ -21,4 +21,8 @@
 .list-card.side-toggled {
     width: 250px !important;
     margin-right: 10px !important;
+}
+
+.card-composer-container {
+    max-width: 250px;
 }
