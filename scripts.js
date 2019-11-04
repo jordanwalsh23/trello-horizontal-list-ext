@@ -1,19 +1,24 @@
-var toggleBtn = document.createElement('button');
-toggleBtn.id = "toggle-btn";
-toggleBtn.innerText = "Toggle Horizontal View";
+var currentState = "disabled";
+var debugHorizontal = false;
 
-toggleBtn.onclick = function() {
+var toggleLink = document.createElement('a');
+toggleLink.id = "toggle-link";
+toggleLink.href = "#";
+toggleLink.classList.add("board-header-btn", "board-header-btn-without-icon", "board-header-btn-text");
+toggleLink.innerText = "Toggle Horizontal View";
+
+toggleLink.onclick = function() {
 
     if (document.querySelector("#board").classList.contains('side-toggled')) {
         //disable
+        currentState = "disabled";
         disableHorizontalView();
         saveState('disabled');
-
     } else {
         //enable
+        currentState = "enabled";
         enableHorizontalView();
         saveState('enabled');
-
     }
 
     //trigger the changes to take place.
@@ -26,7 +31,7 @@ function saveState(state) {
     var boardName = window.location.pathname.replace(/\//g, '-');
 
     chrome.storage.sync.get(['state'], function(result) {
-        console.log('Saved value currently is: ', result);
+        debugHorizontal && console.log('Saved value currently is: ', result);
 
         if (!result || !result.state) {
             result = {
@@ -36,11 +41,11 @@ function saveState(state) {
 
         result.state[boardName] = state;
 
-        console.log('Updated to: ', result);
+        debugHorizontal && console.log('Updated to: ', result);
 
         chrome.storage.sync.set(result, function() {
             // Notify that we saved.
-            console.log('Settings saved');
+            debugHorizontal && console.log('Settings saved');
         });
     });
 }
@@ -58,6 +63,7 @@ function disableHorizontalView() {
 
     document.querySelectorAll(".list-cards").forEach(function(obj) {
         obj.classList.remove("side-toggled");
+        obj.onblur = false;
     });
 
     document.querySelectorAll(".list-card").forEach(function(obj) {
@@ -92,35 +98,36 @@ window.setInterval(function() {
     if (path.startsWith("/b")) {
         //We are on a board, check if the button is there
 
-        if (!document.getElementById('toggle-btn')) {
+        if (!document.getElementById('toggle-link')) {
 
             //We are in a new board.
 
             var boardName = window.location.pathname.replace(/\//g, '-');
 
-            console.log('boardName:', boardName);
+            debugHorizontal && console.log('boardName:', boardName);
 
             //Add the button
-            document.querySelector(".board-header-btns").append(toggleBtn);
+            document.querySelector(".board-header-btns").append(toggleLink);
 
             //chrome.storage.sync.remove(['state']);
 
             //Get the state from memory
             chrome.storage.sync.get(['state'], function(result) {
-                console.log('Value currently is ', result);
+                debugHorizontal && console.log('Value currently is ', result);
 
-                var thisState = result.state[boardName];
-
-                if (thisState == "enabled") {
-                    enableHorizontalView();
-                    //trigger the changes to take place.
-                    document.querySelector("#board").offsetHeight;
-                }
+                currentState = result.state[boardName];
             });
         }
 
+        if (currentState == "disabled")
+            return false;
 
+        if (currentState == "enabled") {
+            enableHorizontalView();
+            //trigger the changes to take place.
+            document.querySelector("#board").offsetHeight;
+        }
     }
 
 
-}, 2000);
+}, 1500);
