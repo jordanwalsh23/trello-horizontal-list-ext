@@ -1,5 +1,6 @@
 var currentState = "disabled";
 var debugHorizontal = false;
+var loaded = false;
 
 var toggleLink = document.createElement('a');
 toggleLink.id = "toggle-link";
@@ -107,20 +108,34 @@ window.setInterval(function() {
             debugHorizontal && console.log('boardName:', boardName);
 
             //Add the button
-            document.querySelector(".board-header-btns").append(toggleLink);
+            var boardHeaderBtns = document.querySelector(".board-header-btns");
 
-            //chrome.storage.sync.remove(['state']);
+            if (boardHeaderBtns) {
+                loaded = true;
+                boardHeaderBtns.append(toggleLink);
+                //chrome.storage.sync.remove(['state']);
 
-            //Get the state from memory
-            chrome.storage.sync.get(['state'], function(result) {
-                debugHorizontal && console.log('Value currently is ', result);
+                //Get the state from memory
+                chrome.storage.sync.get(['state'], function(result) {
+                    debugHorizontal && console.log('Value currently is ', result);
 
-                currentState = result.state[boardName];
-            });
+                    currentState = result.state[boardName];
+                });
+            } else {
+                loaded = false;
+            }
         }
 
-        if (currentState == "disabled")
+        debugHorizontal && console.log('Current State for this board is: ', currentState);
+
+        if (!loaded) {
             return false;
+        }
+
+        if (currentState == "disabled") {
+            disableHorizontalView();
+            return false;
+        }
 
         if (currentState == "enabled") {
             enableHorizontalView();
@@ -129,5 +144,4 @@ window.setInterval(function() {
         }
     }
 
-
-}, 1500);
+}, 100);
