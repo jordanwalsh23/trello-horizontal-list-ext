@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Trello Horizontal Lists",
-    "version": "1.4",
+    "version": "1.5",
     "description": "Turns Trello Lists Horizontal so they can be used for vertical comparisons.",
     "author": "Jordan Walsh (info@heyshmu.com)",
     "permissions": [
