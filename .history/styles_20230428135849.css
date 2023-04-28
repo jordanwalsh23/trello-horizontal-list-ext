@@ -16,7 +16,7 @@
 
 .list-cards.side-toggled {
     display: inline-flex !important;
-    flex-direction: row !important;
+    flex-direction: inherit !important;
 
 }
 
