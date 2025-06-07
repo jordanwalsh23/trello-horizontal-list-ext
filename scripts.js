@@ -54,20 +54,20 @@ function saveState(state) {
 function disableHorizontalView() {
     document.querySelector("#board").classList.remove("side-toggled");
 
-    document.querySelectorAll(".list-wrapper").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-wrapper"]').forEach(function(obj) {
         obj.classList.remove("side-toggled");
     });
 
-    document.querySelectorAll(".list").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list"]').forEach(function(obj) {
         obj.classList.remove("side-toggled");
     });
 
-    document.querySelectorAll(".list-cards").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-cards"]').forEach(function(obj) {
         obj.classList.remove("side-toggled");
         obj.onblur = false;
     });
 
-    document.querySelectorAll(".list-card").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-card"]').forEach(function(obj) {
         obj.classList.remove("side-toggled");
     });
 }
@@ -75,19 +75,19 @@ function disableHorizontalView() {
 function enableHorizontalView() {
     document.querySelector("#board").classList.add("side-toggled");
 
-    document.querySelectorAll(".list-wrapper").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-wrapper"]').forEach(function(obj) {
         obj.classList.add("side-toggled");
     });
 
-    document.querySelectorAll(".list").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list"]').forEach(function(obj) {
         obj.classList.add("side-toggled");
     });
 
-    document.querySelectorAll(".list-cards").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-cards"]').forEach(function(obj) {
         obj.classList.add("side-toggled");
     });
 
-    document.querySelectorAll(".list-card").forEach(function(obj) {
+    document.querySelectorAll('[data-testid="list-card"]').forEach(function(obj) {
         obj.classList.add("side-toggled");
     });
 }
