@@ -70,6 +70,10 @@ function disableHorizontalView() {
     document.querySelectorAll('[data-testid="list-card"]').forEach(function(obj) {
         obj.classList.remove("side-toggled");
     });
+
+    document.querySelectorAll('[data-testid="list-card-gap"]').forEach(function(obj) {
+        obj.classList.remove("side-toggled");
+    });
 }
 
 function enableHorizontalView() {
@@ -88,6 +92,10 @@ function enableHorizontalView() {
     });
 
     document.querySelectorAll('[data-testid="list-card"]').forEach(function(obj) {
+        obj.classList.add("side-toggled");
+    });
+
+    document.querySelectorAll('[data-testid="list-card-gap"]').forEach(function(obj) {
         obj.classList.add("side-toggled");
     });
 }

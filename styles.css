@@ -26,6 +26,12 @@
     margin-right: 10px !important;
 }
 
+[data-testid="list-card-gap"].side-toggled, .list-card-gap.side-toggled {
+    width: 0px !important;
+    padding: 0px 2px !important;
+}
+
+
 .card-composer-container {
     max-width: 250px;
 }
