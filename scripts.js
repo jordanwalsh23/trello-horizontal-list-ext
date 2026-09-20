@@ -6,6 +6,8 @@ var toggleLink = document.createElement('a');
 toggleLink.id = "toggle-link";
 toggleLink.href = "#";
 toggleLink.classList.add("board-header-btn", "board-header-btn-without-icon", "board-header-btn-text");
+toggleLink.style.background = "var(--dynamic-button-primary-hovered)";
+toggleLink.style.color = "var(--dynamic-button-primary-text)";
 toggleLink.innerText = "Toggle Horizontal View";
 
 toggleLink.onclick = function() {
@@ -116,11 +118,13 @@ window.setInterval(function() {
             debugHorizontal && console.log('boardName:', boardName);
 
             //Add the button
-            var boardHeaderBtns = document.querySelector(".board-header-btns");
+            var boardHeaderBtns = document.querySelector(".board-header").children[0].children[1];
+
+            console.log('boardHeader:', boardHeaderBtns);
 
             if (boardHeaderBtns) {
                 loaded = true;
-                boardHeaderBtns.append(toggleLink);
+                boardHeaderBtns.prepend(toggleLink);
                 //chrome.storage.sync.remove(['state']);
 
                 //Get the state from memory
